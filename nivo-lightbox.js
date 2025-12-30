@@ -1,5 +1,5 @@
 /*
- * Nivo Lightbox v1.3.1
+ * Nivo Lightbox v3.0.0
  * http://dev7studios.com/nivo-lightbox
  *
  * Copyright 2013, Dev7studios
@@ -187,10 +187,10 @@
 						});
 					});
 				}).each(function() {
-					if(this.complete) $(this).load();
+					if(this.complete) $(this).trigger('load');
 				});
 
-				img.error(function() {
+				img.on('error', function() {
 					var wrap = $('<div class="nivo-lightbox-error"><p>'+ $this.options.errorMessage +'</p></div>');
                     content.html(wrap).removeClass('nivo-lightbox-loading');
 				});
@@ -227,7 +227,7 @@
                         scrolling: 'auto'
                     });
                     content.html(iframeVideo);
-                    iframeVideo.load(function(){ content.removeClass('nivo-lightbox-loading'); });
+                    iframeVideo.on('load', function(){ content.removeClass('nivo-lightbox-loading'); });
                 }
             }
             // AJAX
@@ -304,7 +304,7 @@
                     scrolling: 'auto'
                 });
                 content.html(iframe);
-                iframe.load(function(){ content.removeClass('nivo-lightbox-loading'); });
+                iframe.on('load', function(){ content.removeClass('nivo-lightbox-loading'); });
             } else {
 				return false;
 			}
